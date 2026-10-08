@@ -171,16 +171,3 @@ Available ↔ Unavailable
 - Có thể ưu tiên các chức năng quan trọng trước.
 - Phù hợp với project có quy mô vừa và nhỏ.
 
-## 7. Deliverables
-
-Các sản phẩm được xây dựng dựa trên tài liệu đặc tả này:
-
-| # | Deliverable |
-|---|---|
-| 1 | Business Rules |
-| 2 | SRS |
-| 3 | Use Case Diagram |
-| 4 | Activity Diagram |
-| 5 | Class Diagram / ERD |
-| 6 | Sequence Diagram |
-| 7 | UI Prototype |
