@@ -176,6 +176,7 @@ Available ↔ Unavailable
 Mục này nêu **yêu cầu đặc tả** cho từng sản phẩm của Topic 1: mỗi sản phẩm cần có những nội dung gì.
 
 | # | Deliverable | Cần thực hiện / đặc tả | Mức độ |
+|---|---|---|---|
 | 1 | **Business Rules** | Quy tắc nghiệp vụ; quy định về trạng thái bàn; quy định đặt, đổi, hủy; quy định check-in; quy định số người và sức chứa bàn; quy định tránh trùng lịch (double booking) | **BẮT BUỘC** |
 | 2 | **SRS** | Yêu cầu chức năng; yêu cầu phi chức năng; Actors; phạm vi hệ thống; ràng buộc; giả định | **BẮT BUỘC** |
 | 3 | **Use Case Diagram** | Xác định Actor (Khách hàng, Nhân viên, Quản trị viên); các Use Case chính; quan hệ giữa Actor và Use Case | **BẮT BUỘC** |
@@ -183,4 +184,5 @@ Mục này nêu **yêu cầu đặc tả** cho từng sản phẩm của Topic 1
 | 5 | **Class Diagram / ERD** | Các thực thể chính (Customer, Table, Area, Reservation, CheckIn); thuộc tính chính; quan hệ giữa các thực thể; khóa chính, khóa ngoại | **BẮT BUỘC** |
 | 6 | **Sequence Diagram** | Mô tả tương tác giữa Khách hàng, UI/Web/App, Reservation System và Database trong quy trình đặt bàn | **BẮT BUỘC** |
 | 7 | **UI Prototype** | Giao diện đặt bàn; giao diện tra cứu bàn; giao diện chọn thời gian / số người; giao diện xác nhận đặt bàn; giao diện quản lý trạng thái bàn | **BẮT BUỘC** |
+
 
