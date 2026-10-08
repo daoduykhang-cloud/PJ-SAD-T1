@@ -173,8 +173,6 @@ Available ↔ Unavailable
 
 ## 7. Deliverables bắt buộc
 
-Mục này nêu **yêu cầu đặc tả** cho từng sản phẩm của Topic 1: mỗi sản phẩm cần có những nội dung gì.
-
 | # | Deliverable | Cần thực hiện / đặc tả | Mức độ |
 |---|---|---|---|
 | 1 | **Business Rules** | Quy tắc nghiệp vụ; quy định về trạng thái bàn; quy định đặt, đổi, hủy; quy định check-in; quy định số người và sức chứa bàn; quy định tránh trùng lịch (double booking) | **BẮT BUỘC** |
