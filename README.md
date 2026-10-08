@@ -21,9 +21,7 @@ Các nghiệp vụ chính:
 
 ### 1.2. Hiện trạng
 
-Việc đặt bàn có thể được thực hiện thủ công, gây khó khăn trong việc kiểm tra bàn trống và nguy cơ xảy ra trùng lịch.
-
-**Giả định:** Hệ thống được xây dựng cho một nhà hàng.
+Giả định: Việc đặt bàn hiện được thực hiện thủ công, gây khó khăn trong việc kiểm tra bàn trống và có nguy cơ xảy ra trùng lịch.
 
 ### 1.3. Đối tượng sử dụng
 
@@ -69,8 +67,6 @@ Kiểm tra hợp lệ
 Tạo và xác nhận đặt bàn
         ↓
 Check-in
-        ↓
-Hoàn tất lượt sử dụng
 ```
 
 ### Output
@@ -92,16 +88,15 @@ Hoàn tất lượt sử dụng
 | **BR-03** | Chỉ bàn khả dụng mới được đặt. |
 | **BR-04** | Họ tên, số điện thoại, thời gian và số người là thông tin bắt buộc. |
 | **BR-05** | Mỗi đặt bàn có một mã duy nhất. |
-| **BR-06** | Chỉ đặt bàn còn hiệu lực mới được đổi hoặc hủy. |
+| **BR-06** | Chỉ đặt bàn ở trạng thái Confirmed mới được đổi hoặc hủy. |
 | **BR-07** | Khi đổi thời gian hoặc bàn phải kiểm tra lại khả dụng. |
 | **BR-08** | Chỉ đặt bàn hợp lệ mới được check-in. |
-| **BR-09** | Khi check-in, hệ thống cập nhật trạng thái đặt bàn và bàn. |
-| **BR-10** | Hệ thống phải ngăn việc hai người cùng đặt một bàn trong cùng thời gian. |
+| **BR-09** | Khi check-in thành công, trạng thái đặt bàn chuyển thành Checked-in và trạng thái bàn chuyển thành Occupied. |
 
 ### Trạng thái đặt bàn
 
 ```text
-Confirmed → Checked-in → Completed
+Confirmed → Checked-in
      └──────────────→ Cancelled
 ```
 
@@ -111,7 +106,7 @@ Confirmed → Checked-in → Completed
 Available ↔ Occupied
 Available ↔ Unavailable
 ```
-
+- Khả dụng của bàn được xác định dựa trên trạng thái hiện tại và lịch đặt bàn trong khoảng thời gian yêu cầu.
 
 ## 4. Yêu cầu hệ thống (SRS)
 
