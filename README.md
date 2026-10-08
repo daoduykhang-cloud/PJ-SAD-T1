@@ -2,8 +2,6 @@
 
 **Topic 1: Khảo sát hiện trạng, xác định bài toán và lựa chọn quy trình phát triển**
 
-> Tài liệu đặc tả yêu cầu cho hệ thống đặt bàn nhà hàng.  
-> Không bao gồm source code, database và thiết kế chi tiết.
 
 ## 1. Tổng quan và phạm vi
 
@@ -45,7 +43,6 @@ Tra cứu bàn, kiểm tra khả dụng, đặt / xác nhận, đổi, hủy, b�
 
 Đặt món, thanh toán, khuyến mãi, tích điểm và quản lý nhiều chi nhánh.
 
----
 
 ## 2. Input → Processing → Output
 
@@ -85,7 +82,6 @@ Hoàn tất lượt sử dụng
 - Trạng thái đặt bàn và bàn.
 - Thông tin check-in.
 
----
 
 ## 3. Business Rules
 
@@ -116,7 +112,6 @@ Available ↔ Occupied
 Available ↔ Unavailable
 ```
 
----
 
 ## 4. Yêu cầu hệ thống (SRS)
 
@@ -146,7 +141,6 @@ Available ↔ Unavailable
 | **NFR-03** | Thông tin cá nhân của khách hàng phải được bảo vệ. |
 | **NFR-04** | Dữ liệu đặt bàn và trạng thái bàn phải đảm bảo tính nhất quán. |
 
----
 
 ## 5. Giả định
 
@@ -158,7 +152,6 @@ Available ↔ Unavailable
 - Check-in do nhân viên thực hiện.
 - Khách hàng sử dụng mã đặt bàn và số điện thoại để đổi hoặc hủy đặt bàn.
 
----
 
 ## 6. Quy trình phát triển
 
@@ -177,8 +170,6 @@ Available ↔ Unavailable
 - Dễ tiếp nhận phản hồi và thay đổi yêu cầu.
 - Có thể ưu tiên các chức năng quan trọng trước.
 - Phù hợp với project có quy mô vừa và nhỏ.
-
----
 
 ## 7. Deliverables
 
