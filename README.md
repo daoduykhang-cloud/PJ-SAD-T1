@@ -2,66 +2,63 @@
 
 **Topic 1: Khảo sát hiện trạng, xác định bài toán và lựa chọn quy trình phát triển**
 
-> Tài liệu đặc tả yêu cầu ban đầu cho hệ thống đặt bàn nhà hàng.  
-> Không bao gồm source code, database hoặc thiết kế chi tiết.
+> Tài liệu đặc tả yêu cầu cho hệ thống đặt bàn nhà hàng.  
+> Không bao gồm source code, database và thiết kế chi tiết.
 
-### Quy ước
+## 1. Tổng quan và phạm vi
 
-| Nhãn | Ý nghĩa |
-|---|---|
-| **[Đề bài]** | Thông tin từ đề bài |
-| **[GĐ]** | Giả định cần xác nhận |
-| **[ĐX]** | Đề xuất của nhóm |
-| **OQ** | Câu hỏi mở |
+### 1.1. Bài toán
 
----
+Hệ thống hỗ trợ khách hàng và nhân viên nhà hàng quản lý việc đặt bàn, kiểm tra tình trạng bàn, bố trí bàn và check-in.
 
-# 1. Tổng quan và phạm vi
-
-## 1.1. Bài toán
-
-**[Đề bài]** Hệ thống hỗ trợ khách hàng và nhân viên nhà hàng trong việc:
+Các nghiệp vụ chính:
 
 - Tra cứu bàn.
 - Kiểm tra bàn khả dụng.
-- Đặt, đổi, hủy đặt bàn.
+- Đặt, đổi và hủy đặt bàn.
 - Bố trí bàn.
 - Check-in.
 - Cập nhật trạng thái bàn.
 - Quản lý thông tin khách hàng.
 
-**Hiện trạng [GĐ]:** việc đặt bàn có thể đang được quản lý thủ công, dễ xảy ra nhầm lịch hoặc đặt trùng. Cần khảo sát để xác nhận.
+### 1.2. Hiện trạng
 
-## 1.2. Actors
+Việc đặt bàn có thể được thực hiện thủ công, gây khó khăn trong việc kiểm tra bàn trống và nguy cơ xảy ra trùng lịch.
 
-| Actor | Vai trò |
+**Giả định:** Hệ thống được xây dựng cho một nhà hàng.
+
+### 1.3. Đối tượng sử dụng
+
+| Đối tượng | Chức năng |
 |---|---|
 | **Khách hàng** | Tra cứu, kiểm tra khả dụng, đặt, đổi, hủy bàn |
-| **Nhân viên** | Đặt hộ, bố trí bàn, check-in, cập nhật trạng thái, quản lý khách |
-| **Quản trị viên** | Quản lý bàn và khu vực `[ĐX]` |
+| **Nhân viên** | Đặt hộ, bố trí bàn, check-in, cập nhật trạng thái và quản lý khách |
+| **Quản trị viên** | Quản lý bàn, khu vực và các chức năng của nhân viên |
 
-## 1.3. Phạm vi
+### 1.4. Phạm vi
 
-**In Scope:**  
-Tra cứu, kiểm tra khả dụng, đặt / xác nhận, đổi, hủy, bố trí bàn, check-in, cập nhật trạng thái và quản lý khách.
+**Trong phạm vi:**
 
-**Out of Scope:**  
-Đặt món, thanh toán, khuyến mãi, tích điểm, quản lý nhiều chi nhánh.
+Tra cứu bàn, kiểm tra khả dụng, đặt / xác nhận, đổi, hủy, bố trí bàn, check-in, cập nhật trạng thái bàn và quản lý khách.
+
+**Ngoài phạm vi:**
+
+Đặt món, thanh toán, khuyến mãi, tích điểm và quản lý nhiều chi nhánh.
 
 ---
 
-# 2. Input → Processing → Output
+## 2. Input → Processing → Output
 
-## Input
+### Input
 
 | Nhóm | Dữ liệu |
 |---|---|
-| Khách hàng | Họ tên, SĐT, email |
-| Đặt bàn | Thời gian bắt đầu, thời gian kết thúc, số người, khu vực, bàn mong muốn, ghi chú |
+| Khách hàng | Họ tên, số điện thoại, email |
+| Đặt bàn | Ngày, giờ bắt đầu, giờ kết thúc, số người, khu vực, bàn mong muốn, ghi chú |
 | Bàn | Mã bàn, sức chứa, khu vực, trạng thái |
 | Vận hành | Mã đặt bàn, yêu cầu đổi / hủy, thông tin check-in |
 
-## Processing
+### Processing
 
 ```text
 Nhập thời gian + số người
@@ -79,118 +76,120 @@ Check-in
 Hoàn tất lượt sử dụng
 ```
 
-## Output
+### Output
 
 - Danh sách bàn khả dụng.
-- Thông tin và mã đặt bàn.
+- Thông tin bàn.
+- Mã và thông tin đặt bàn.
 - Kết quả đặt / đổi / hủy.
 - Trạng thái đặt bàn và bàn.
 - Thông tin check-in.
 
 ---
 
-# 3. Business Rules
+## 3. Business Rules
 
-| ID | Business Rule | Nhãn |
-|---|---|---|
-| **BR-01** | Một bàn không được có hai đặt bàn hiệu lực chồng thời gian | [Đề bài] |
-| **BR-02** | Số người không vượt quá sức chứa của bàn | [Đề bài] |
-| **BR-03** | Chỉ bàn khả dụng mới được đặt | [Đề bài] |
-| **BR-04** | Họ tên, SĐT, thời gian và số người là bắt buộc `[GĐ]` | [Đề bài] + [GĐ] |
-| **BR-05** | Mỗi đặt bàn có một mã duy nhất | [ĐX] |
-| **BR-06** | Chỉ đặt bàn còn hiệu lực mới được đổi / hủy | [GĐ] |
-| **BR-07** | Khi đổi thời gian hoặc bàn phải kiểm tra lại khả dụng | [Đề bài] |
-| **BR-08** | Chỉ đặt bàn hợp lệ mới được check-in | [Đề bài] |
-| **BR-09** | Check-in phải cập nhật trạng thái đặt bàn và bàn | [Đề bài] |
-| **BR-10** | Hệ thống phải tránh đặt trùng khi có nhiều yêu cầu đồng thời | [ĐX] |
+| ID | Quy tắc nghiệp vụ |
+|---|---|
+| **BR-01** | Một bàn không được có hai đặt bàn hiệu lực chồng thời gian. |
+| **BR-02** | Số người không được vượt quá sức chứa của bàn. |
+| **BR-03** | Chỉ bàn khả dụng mới được đặt. |
+| **BR-04** | Họ tên, số điện thoại, thời gian và số người là thông tin bắt buộc. |
+| **BR-05** | Mỗi đặt bàn có một mã duy nhất. |
+| **BR-06** | Chỉ đặt bàn còn hiệu lực mới được đổi hoặc hủy. |
+| **BR-07** | Khi đổi thời gian hoặc bàn phải kiểm tra lại khả dụng. |
+| **BR-08** | Chỉ đặt bàn hợp lệ mới được check-in. |
+| **BR-09** | Khi check-in, hệ thống cập nhật trạng thái đặt bàn và bàn. |
+| **BR-10** | Hệ thống phải ngăn việc hai người cùng đặt một bàn trong cùng thời gian. |
 
-### Trạng thái đặt bàn `[GĐ]`
+### Trạng thái đặt bàn
 
 ```text
 Confirmed → Checked-in → Completed
      └──────────────→ Cancelled
 ```
 
-### Trạng thái bàn `[GĐ]`
+### Trạng thái bàn
 
 ```text
 Available ↔ Occupied
 Available ↔ Unavailable
 ```
 
-> `Reserved` không được xem là trạng thái hiện tại của bàn; lịch đặt được xác định từ thông tin reservation.
-
 ---
 
-# 4. Yêu cầu hệ thống (SRS)
+## 4. Yêu cầu hệ thống (SRS)
 
-## 4.1. Functional Requirements
+### 4.1. Yêu cầu chức năng
 
-| ID | Yêu cầu | Actor |
+| ID | Yêu cầu | Đối tượng |
 |---|---|---|
-| **FR-01** | Tra cứu bàn theo khu vực, sức chứa và trạng thái | KH, NV |
-| **FR-02** | Kiểm tra bàn khả dụng theo thời gian và số người | KH, NV |
-| **FR-03** | Tạo và xác nhận đặt bàn, sinh mã đặt bàn | KH, NV |
+| **FR-01** | Tra cứu bàn theo khu vực, sức chứa và trạng thái | Khách hàng, Nhân viên |
+| **FR-02** | Kiểm tra bàn khả dụng theo thời gian và số người | Khách hàng, Nhân viên |
+| **FR-03** | Tạo và xác nhận đặt bàn, sinh mã đặt bàn | Khách hàng, Nhân viên |
 | **FR-04** | Ngăn đặt trùng lịch | Hệ thống |
-| **FR-05** | Đổi thông tin hoặc đổi bàn | KH, NV |
-| **FR-06** | Hủy đặt bàn | KH, NV |
-| **FR-07** | Bố trí / thay đổi bàn | NV, QTV |
-| **FR-08** | Check-in | NV |
-| **FR-09** | Cập nhật trạng thái bàn | NV, QTV |
-| **FR-10** | Quản lý thông tin khách hàng | NV, QTV |
+| **FR-05** | Đổi thông tin hoặc đổi bàn | Khách hàng, Nhân viên |
+| **FR-06** | Hủy đặt bàn | Khách hàng, Nhân viên |
+| **FR-07** | Bố trí hoặc thay đổi bàn | Nhân viên, Quản trị viên |
+| **FR-08** | Check-in đặt bàn | Nhân viên |
+| **FR-09** | Cập nhật trạng thái bàn | Nhân viên, Quản trị viên |
+| **FR-10** | Quản lý thông tin khách hàng | Nhân viên, Quản trị viên |
 | **FR-11** | Thông báo kết quả thao tác | Hệ thống |
-| **FR-12** | Quản lý bàn và khu vực | QTV |
+| **FR-12** | Quản lý bàn và khu vực | Quản trị viên |
 
-## 4.2. Non-functional Requirements
+### 4.2. Yêu cầu phi chức năng
 
 | ID | Yêu cầu |
 |---|---|
-| **NFR-01** | Không xảy ra đặt trùng bàn khi nhiều yêu cầu được xử lý đồng thời |
-| **NFR-02** | Chức năng của nhân viên / quản trị viên phải được xác thực và phân quyền |
-| **NFR-03** | Bảo vệ thông tin cá nhân của khách hàng |
-| **NFR-04** | Dữ liệu đặt bàn và trạng thái bàn phải nhất quán |
+| **NFR-01** | Không xảy ra đặt trùng bàn khi nhiều yêu cầu được xử lý đồng thời. |
+| **NFR-02** | Chức năng của nhân viên và quản trị viên phải được xác thực và phân quyền. |
+| **NFR-03** | Thông tin cá nhân của khách hàng phải được bảo vệ. |
+| **NFR-04** | Dữ liệu đặt bàn và trạng thái bàn phải đảm bảo tính nhất quán. |
 
 ---
 
-# 5. Assumptions
+## 5. Giả định
 
-- **AS-01:** Hệ thống phục vụ một nhà hàng `[GĐ]`.
-- **AS-02:** Mỗi đặt bàn gắn với một bàn `[GĐ]`.
-- **AS-03:** Đặt bàn hợp lệ được xác nhận ngay `[GĐ]`.
-- **AS-04:** Khách có thể tự đặt hoặc nhân viên đặt hộ `[GĐ]`.
-- **AS-05:** Check-in do nhân viên thực hiện `[GĐ]`.
-- **AS-06:** Khách đổi / hủy bằng mã đặt bàn + SĐT `[GĐ]`.
-
----
-
-# 6. Open Questions
-
-| ID | Câu hỏi cần xác nhận |
-|---|---|
-| **OQ-01** | Một lượt đặt bàn kéo dài bao lâu? |
-| **OQ-02** | Khung giờ phục vụ và giới hạn đặt trước là gì? |
-| **OQ-03** | Đặt bàn tự động xác nhận hay cần nhân viên duyệt? |
-| **OQ-04** | Thời hạn đổi / hủy và phí hủy như thế nào? |
-| **OQ-05** | Xử lý khách đến trễ và no-show như thế nào? |
-| **OQ-06** | Có cho phép ghép nhiều bàn không? |
-| **OQ-07** | Khách xác thực khi đổi / hủy bằng mã + SĐT hay OTP? |
+- Hệ thống áp dụng cho một nhà hàng.
+- Mỗi đặt bàn gắn với một bàn.
+- Mỗi đặt bàn có thời gian bắt đầu và kết thúc.
+- Đặt bàn hợp lệ được xác nhận ngay.
+- Khách hàng có thể tự đặt hoặc nhân viên đặt hộ.
+- Check-in do nhân viên thực hiện.
+- Khách hàng sử dụng mã đặt bàn và số điện thoại để đổi hoặc hủy đặt bàn.
 
 ---
 
-# 7. Quy trình phát triển
+## 6. Quy trình phát triển
 
-## Đề xuất: Scrum
+### Lựa chọn: Scrum
 
 | Quy trình | Đánh giá |
 |---|---|
-| Waterfall | ❌ Khó thay đổi khi yêu cầu chưa ổn định |
-| Agile | ✅ Phù hợp |
-| **Scrum** | ✅ **Đề xuất lựa chọn** |
-| Spiral | ⚠️ Tương đối phức tạp với phạm vi hệ thống |
+| Waterfall | Không phù hợp vì yêu cầu có thể thay đổi trong quá trình phát triển. |
+| Agile | Phù hợp với yêu cầu cần phản hồi và điều chỉnh. |
+| **Scrum** | **Phù hợp nhất** vì phát triển theo Sprint và có phản hồi thường xuyên. |
+| Spiral | Tương đối phức tạp với quy mô hệ thống. |
 
 ### Lý do chọn Scrum
 
-- Yêu cầu còn một số điểm cần xác nhận.
-- Có thể phát triển theo từng Sprint.
-- Dễ nhận phản hồi và điều chỉnh.
-- Tính năng mới có thể đưa vào Product Backlog.
+- Phát triển hệ thống theo từng giai đoạn.
+- Dễ tiếp nhận phản hồi và thay đổi yêu cầu.
+- Có thể ưu tiên các chức năng quan trọng trước.
+- Phù hợp với project có quy mô vừa và nhỏ.
+
+---
+
+## 7. Deliverables
+
+Các sản phẩm được xây dựng dựa trên tài liệu đặc tả này:
+
+| # | Deliverable |
+|---|---|
+| 1 | Business Rules |
+| 2 | SRS |
+| 3 | Use Case Diagram |
+| 4 | Activity Diagram |
+| 5 | Class Diagram / ERD |
+| 6 | Sequence Diagram |
+| 7 | UI Prototype |
